@@ -3,14 +3,26 @@ import React from "react";
 const MoviesList = (props) => {
   const movies = [...props.list.results];
   const select = props.handleSelect;
-  const searchReg = new RegExp(props.search, "i");
+  const search = props.search;
+
   return (
     <div className="list">
-      <h2>here my beautiful list :</h2>
+      {console.log("rendered movie list")}
+      {search ? (
+        <h3>
+          Results for "<span>{search}</span>"
+        </h3>
+      ) : (
+        <h3>Movies now playing :</h3>
+      )}
       <ul>
-        {movies.filter(movie=>movie.title.match(searchReg)).map((movie) => (
-          <li key={movie.id} num={movies.indexOf(movie)} onClick={select}>{movie.title}</li>
-        ))}
+        {movies
+          .sort((a, b) => a.title.localeCompare(b.title))
+          .map((movie) => (
+            <li key={movie.id} id={movie.id} onClick={select}>
+              {movie.title}
+            </li>
+          ))}
       </ul>
     </div>
   );

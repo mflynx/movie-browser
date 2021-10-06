@@ -2,49 +2,130 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: #0d253f;
 }
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 h2 {
-  margin-top: 3%;
+  text-decoration: underline;
+  color: #01b4e4;
+  margin: 10% 0;
+}
+h3 {
+  margin: 3% 0;
+}
+header {
+  margin: 20px 0;
 }
 .main {
-  display: flex;
-  justify-content: space-around;
   height: 80vh;
+  width: 60vw;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 15% 85%;
+  grid-template-areas:
+    "searchbar details"
+    "list details";
+  border: #01b4e4 solid 3px;
+  box-shadow: 10px 10px 15px 3px #0d253f;
 }
 .search-bar {
-  height: 20%;
+  grid-area: searchbar;
   display: flex;
   align-items: center;
-  justify-content: center;
+  background-color: #01b4e4;
+  margin-left: -3px;
 }
 .search-bar input {
+  height: 50%;
+  width: 100%;
   font-size: large;
+  padding: 2% 15%;
+  border-radius: 30px;
+  border: 1px solid #0d253f;
+}
+.search-bar input::placeholder {
+  font-style: italic;
+  color: rgb(197, 194, 194);
+}
+.search-bar img {
+  height: 20%;
+  position: relative;
+}
+#glass {
+  left: 10%;
+}
+#clear {
+  right: 10%;
+  cursor: pointer;
 }
 .list {
-  min-width: 30vw;
-  border: red solid 3px;
-  height: 80%;
-  overflow-y: scroll
+  grid-area: list;
+  overflow-y: scroll;
+}
+.list span {
+  font-style: italic;
 }
 .list ul {
   list-style: none;
-  margin: 5%;
+  margin: 2%;
   display: flex;
   flex-direction: column;
   text-align: start;
 }
 .list li {
   margin: 1%;
-  padding: 2%;
-  background-color: lightgoldenrodyellow;
+  padding: 2% 5%;
+  border-left: 1px solid #acf3bf;
+  border-bottom: 1px solid #acf3bf;
+  border-radius: 30px;
 }
 .list li:hover {
-  background-color: rgb(248, 248, 176)
+  background-color: #90cea1;
+  color: white;
+  cursor: pointer;
 }
 .details {
-  max-width: 60vw;
-  border: blue solid 3px;
+  grid-area: details;
+  overflow: auto;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  padding: 5%;
+}
+.details img {
+  max-width: 95%;
+}
+.top {
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+.top-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top-left img {
+  box-shadow: 0px 0px 20px #0d253f;
+}
+.top-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.top-right p {
+  margin-top: 10%;
+}
+hr {
+  margin: 5% 10%;
+  background-color: #0d253f;
+}
+.bottom p {
+  text-align: justify;
+  margin-top: 3%;
 }

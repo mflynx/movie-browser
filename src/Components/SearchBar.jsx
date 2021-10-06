@@ -1,16 +1,23 @@
 import React from "react";
 
 const Searchbar = (props) => {
-  const handleInput = props.handleInput;
-  const search = props.search;
+  const { handleInput, search, handleClear } = props;
+
   return (
     <div className="search-bar">
+      <img id="glass" src="images/icon-search.png" alt="magnifying glass" />
       <input
         type="text"
-        placeholder="type here"
+        placeholder="search"
         onChange={handleInput}
         value={search}
       ></input>
+      <img
+        id="clear"
+        onClick={handleClear}
+        src="images/icon-clear.png"
+        alt="clear"
+      />
     </div>
   );
 };

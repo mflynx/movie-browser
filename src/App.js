@@ -1,39 +1,84 @@
 import "./App.css";
+
 import React, { Component } from "react";
 
+import Header from "./Components/Header.jsx";
 import SearchBar from "./Components/SearchBar.jsx";
 import MoviesList from "./Components/MoviesList.jsx";
 import MovieDetails from "./Components/MovieDetails.jsx";
 
-import movies from "./movies.json";
+import axios from "axios";
+require("dotenv").config();
 
 export class App extends Component {
   state = {
+    movies: null,
     movie: "",
     search: "",
   };
+  getAllCurrentMovies = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&total_pages7`
+      )
+      .then((res) => this.setState({ movies: res.data }))
+      .catch((err) => console.log(err));
+  };
+  componentDidMount = () => {
+    console.log("didMount");
+    this.getAllCurrentMovies();
+  };
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("didUpdate");
+    if (this.state.search !== prevState.search && this.state.search !== "")
+      axios
+        .get(
+          `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${this.state.search}`
+        )
+        .then((res) => this.setState({ movies: res.data }))
+        .catch((err) => console.log(err));
+
+    if (this.state.search !== prevState.search && this.state.search === "")
+      this.getAllCurrentMovies();
+  };
   handleSelect = (evt) => {
-    const num = Number(evt.target.attributes.num.value);
-    this.setState({ movie: movies.results[num]});
-    console.log("selected: ", typeof evt.target.attributes.num.value); //string
-    console.log("selected: ", num); // number
-    console.log("movie: ", this.state.movie);
+    const id = Number(evt.target.attributes.id.value);
+    console.log(id);
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      )
+      .then((res) => this.setState({ movie: res.data }))
+      .catch((err) => console.log(err));
   };
   handleInput = (evt) => {
-    this.setState({ search: evt.target.value }, ()=> {
-      console.log("search input: ", this.state.search)
+    this.setState({ search: evt.target.value }, () => {
+      console.log("search input: ", this.state.search);
     });
   };
+  handleClear = (evt) => {
+    this.setState({ search: "" }, () => {
+      console.log("search input: ", this.state.search);
+    });
+  };
+
   render() {
-    const {movie, search} = this.state;
+    const { movies, movie, search } = this.state;
+    if (!movies) return <h1>Loading...</h1>;
     return (
       <div className="App">
-        <h1>Movie browser</h1>
+        <Header />
         <div className="main">
-          <div>
-          <SearchBar handleInput={this.handleInput} search={search} />
-          <MoviesList list={movies} handleSelect={this.handleSelect} search={search} />
-          </div>
+          <SearchBar
+            handleInput={this.handleInput}
+            search={search}
+            handleClear={this.handleClear}
+          />
+          <MoviesList
+            list={movies}
+            handleSelect={this.handleSelect}
+            search={search}
+          />
           <MovieDetails movie={movie} />
         </div>
       </div>
