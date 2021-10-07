@@ -29,7 +29,7 @@ npm install
 
   - Create an account on https://www.themoviedb.org/
 
-  - Generate an API key (as described here : [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction). Use version 3 of the API as its authentication mechanism is simpler than v4)
+  - Generate an API key (as described [here](https://developers.themoviedb.org/3/getting-started/introduction). Use version 3 of the API as its authentication mechanism is simpler than v4)
   
   - Create a file named `.env` and inside declare this variable:
 
