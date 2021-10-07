@@ -161,6 +161,8 @@ hr {
   }
   .search-bar {
     margin-left: 0;
+    min-height: 60px;
+    z-index: 1;
   }
   h2,
   #stars {

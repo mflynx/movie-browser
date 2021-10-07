@@ -7,7 +7,6 @@ const MoviesList = (props) => {
 
   return (
     <div className="list">
-      {console.log("rendered movie list")}
       {search ? (
         <h3>
           Results for "<span>{search}</span>"

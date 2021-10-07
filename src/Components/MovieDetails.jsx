@@ -5,7 +5,6 @@ const MovieDetails = (props) => {
 
   return movie ? (
     <div className="details">
-      {console.log("rendered movie details")}
       <section className="top">
         <div className="top-left">
           {movie.poster_path ? (

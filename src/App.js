@@ -25,11 +25,9 @@ export class App extends Component {
       .catch((err) => console.log(err));
   };
   componentDidMount = () => {
-    console.log("didMount");
     this.getAllCurrentMovies();
   };
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("didUpdate");
     if (this.state.search !== prevState.search && this.state.search !== "")
       axios
         .get(
@@ -43,7 +41,6 @@ export class App extends Component {
   };
   handleSelect = (evt) => {
     const id = Number(evt.target.attributes.id.value);
-    console.log(id);
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
@@ -52,14 +49,10 @@ export class App extends Component {
       .catch((err) => console.log(err));
   };
   handleInput = (evt) => {
-    this.setState({ search: evt.target.value }, () => {
-      console.log("search input: ", this.state.search);
-    });
+    this.setState({ search: evt.target.value });
   };
   handleClear = (evt) => {
-    this.setState({ search: "" }, () => {
-      console.log("search input: ", this.state.search);
-    });
+    this.setState({ search: "" });
   };
 
   render() {
