@@ -13,7 +13,7 @@ const MoviesList = (props) => {
           Results for "<span>{search}</span>"
         </h3>
       ) : (
-        <h3>Movies now playing :</h3>
+        <h3>Movies now playing:</h3>
       )}
       <ul>
         {movies

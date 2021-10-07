@@ -13,9 +13,8 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 h2 {
-  text-decoration: underline;
-  color: #01b4e4;
   margin: 10% 0;
+  font-size: 1.9vw;
 }
 h3 {
   margin: 3% 0;
@@ -46,7 +45,7 @@ header {
   height: 50%;
   width: 100%;
   font-size: large;
-  padding: 2% 15%;
+  padding: 2% 45px;
   border-radius: 30px;
   border: 1px solid #0d253f;
 }
@@ -54,15 +53,20 @@ header {
   font-style: italic;
   color: rgb(197, 194, 194);
 }
+.search-bar input:focus {
+  outline-style: double;
+}
 .search-bar img {
-  height: 20%;
   position: relative;
+  max-height: 35%;
 }
 #glass {
-  left: 10%;
+  max-width: 22px;
+  left: 35px;
 }
 #clear {
-  right: 10%;
+  max-width: 17px;
+  right: 30px;
   cursor: pointer;
 }
 .list {
@@ -94,8 +98,6 @@ header {
 .details {
   grid-area: details;
   overflow: auto;
-  display: grid;
-  grid-template-rows: 50% 50%;
   padding: 5%;
 }
 .details img {
@@ -121,11 +123,50 @@ header {
 .top-right p {
   margin-top: 10%;
 }
+#stars {
+  font-size: 2vw;
+  margin: 0 5%;
+  color: #01b4e4;
+  text-shadow: 1px 1px 1px #0d253f, 1px 0px 1px #0d253f, 1px 0px 1px #0d253f;
+}
 hr {
-  margin: 5% 10%;
+  margin: 7% 10% 5%;
   background-color: #0d253f;
 }
 .bottom p {
   text-align: justify;
   margin-top: 3%;
+}
+@media (max-width: 640px) {
+  header {
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  header h3 {
+    font-size: 1.1em;
+  }
+  header img {
+    width: 35%;
+  }
+  .main {
+    width: auto;
+    height: 90vh;
+    display: grid;
+    grid-template-rows: 10% 40% 50%;
+    grid-template-columns: none;
+    grid-template-areas: "searchbar" "list" "details";
+    border: none;
+  }
+  .search-bar {
+    margin-left: 0;
+  }
+  h2,
+  #stars {
+    font-size: 1.2em;
+  }
+  h2 {
+    margin: 5% 0;
+  }
 }

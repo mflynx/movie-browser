@@ -19,8 +19,10 @@ const MovieDetails = (props) => {
         </div>
         <div className="top-right">
           <h2>{movie.title}</h2>
-          {/* <h3>{movie.original_title}</h3> */}
-          <p>Vote average : {movie.vote_average}/10</p>
+          <p id="stars">
+            {"★ ".repeat(Math.round(movie.vote_average)) +
+              "☆ ".repeat(10 - Math.round(movie.vote_average))}
+          </p>
           {movie.genres && (
             <p> {movie.genres.map((genre) => genre.name + " ")}</p>
           )}
