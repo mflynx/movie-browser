@@ -8,7 +8,6 @@ import MoviesList from "./Components/MoviesList.jsx";
 import MovieDetails from "./Components/MovieDetails.jsx";
 
 import axios from "axios";
-require("dotenv").config();
 
 export class App extends Component {
   state = {
